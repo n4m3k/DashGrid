@@ -1,0 +1,32 @@
+services:
+  dashgrid:
+    image: dashgrid:local
+    build: .
+    ports:
+      - '${DASHGRID_BIND:-127.0.0.1}:${DASHGRID_PORT:-8080}:8080'
+    environment:
+      NODE_ENV: production
+      PORT: '8080'
+      DATABASE_PATH: /data/dashgrid.sqlite
+      DASHGRID_API_KEY: '${DASHGRID_API_KEY:-}'
+    volumes:
+      - dashgrid_data:/data
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: json-file
+      options:
+        max-size: '5m'
+        max-file: '3'
+    stop_grace_period: 10s
+
+volumes:
+  dashgrid_data:

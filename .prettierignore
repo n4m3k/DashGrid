@@ -1,0 +1,11 @@
+node_modules/
+dist/
+data/
+.env*
+.local/
+backups/
+dashgrid-backup/
+test-results/
+playwright-report/
+coverage/
+package-lock.json

@@ -1,0 +1,14 @@
+node_modules/
+dist/
+data/
+.env*
+!.env.example
+.local/
+backups/
+dashgrid-backup/
+test-results/
+playwright-report/
+*.sqlite*
+*.log
+coverage/
+.DS_Store
